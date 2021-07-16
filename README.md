@@ -42,3 +42,8 @@ All fields are mandatory:
 5. If your personal discord user id (not the bot's) is part of `authenticatedUsers`, then skip this step. Otherwise you need to authenticate first by sending a DM to the bot itself with `!auth <password>`. You should get a message back from the bot if that worked.
 
 6. In the text channel that you setup via `textChannel`, any message sent by authenticated users will be remotely interpreted as commands and processed.
+
+## Caveats
+
+-   Currently runs only on Linux (spawns /bin/sh)
+-   If you've set your discord privacy such that members from mutual servers cannot DM you, you also will not be able to message the bot to authenticate
