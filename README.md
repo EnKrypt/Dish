@@ -1,6 +1,16 @@
-# Shill
+<p align="center">
+    <img width="500" src="https://github.com/EnKrypt/Shill/raw/master/assets/Shill.png">
+</p>
 
-Shill is a remote management discord bot for easy shell access
+<p align="center">
+    <b>Shill is a remote management discord bot for easy shell access</b>
+</p>
+
+<br>
+
+[![License](https://img.shields.io/github/license/EnKrypt/Shill?style=flat-square)](https://raw.githubusercontent.com/EnKrypt/Doppler/master/LICENSE)
+
+---
 
 ## Usage
 
