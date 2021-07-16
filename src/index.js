@@ -2,9 +2,11 @@ const Discord = require('discord.js');
 const yargs = require('yargs/yargs');
 const { hideBin } = require('yargs/helpers');
 const { validateArgs } = require('./validation');
-const { setupShell } = require('./shell');
+const { setupShell, shellInput } = require('./shell');
 
-const args = yargs(hideBin(process.argv)).config().alias('c', 'config').argv;
+const args = yargs(hideBin(process.argv))
+    .config()
+    .alias('c', 'config').argv;
 validateArgs(args);
 
 const client = new Discord.Client();
@@ -19,16 +21,16 @@ client.on('ready', () => {
     );
 });
 
-client.on('message', (message) => {
+client.on('message', message => {
     if (
+        // Shell input
         message.channel.type === 'text' &&
         message.channel.id === args.textChannel &&
-        args.authenticatedUsers.includes(message.author.id) &&
-        message.content.trim()
+        args.authenticatedUsers.includes(message.author.id)
     ) {
-        shell.stdin.write(message.content.trim());
-        shell.stdin.end();
+        shellInput(message.content, shell);
     } else if (
+        // Auth with password
         message.channel.type === 'dm' &&
         message.content === `!auth ${args.password}` &&
         !args.authenticatedUsers.includes(message.author.id)
