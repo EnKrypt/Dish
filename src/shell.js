@@ -23,7 +23,7 @@ const setupShell = (input, state) => {
         state.textChannel.send(
             new Discord.MessageEmbed()
                 .setColor('#ff4444')
-                .setDescription('Process encountered an error')
+                .setTitle('Process encountered an error')
         );
     });
 
@@ -32,7 +32,7 @@ const setupShell = (input, state) => {
         state.textChannel.send(
             new Discord.MessageEmbed()
                 .setColor('#0099ff')
-                .setDescription('Process exited')
+                .setTitle('Process exited')
                 .addFields(
                     { name: 'Exit Code', value: code, inline: true },
                     {
@@ -53,7 +53,7 @@ const shellInput = (input, state) => {
             state.textChannel.send(
                 new Discord.MessageEmbed()
                     .setColor('#ff4444')
-                    .setDescription(
+                    .setTitle(
                         'There is no active process to kill or terminate'
                     )
             );

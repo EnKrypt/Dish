@@ -39,11 +39,10 @@ client.on('message', message => {
         !args.authenticatedUsers.includes(message.author.id)
     ) {
         args.authenticatedUsers.push(message.author.id);
-        message.author.send('Successfully authorized');
         message.author.send(
             new Discord.MessageEmbed()
                 .setColor('#0099ff')
-                .setDescription('Successfully authorized')
+                .setTitle('Successfully authorized')
         );
     }
 });
