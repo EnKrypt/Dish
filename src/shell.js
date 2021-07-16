@@ -1,36 +1,70 @@
 const { spawn } = require('child_process');
+const Discord = require('discord.js');
 
-module.exports.setupShell = textChannel => {
-    const shell = spawn('/bin/sh');
+const setupShell = (input, state) => {
+    const [command, ...commandArguments] = input.split(' ');
+    state.shell = spawn(command, commandArguments);
+    state.active = true;
+    state.since = Date.now();
+    state.shell.stdin.setEncoding('utf-8');
 
-    shell.stdin.setEncoding('utf-8');
-
-    shell.stdout.on('data', data => {
+    state.shell.stdout.on('data', data => {
         const outputLine = data.toString('utf8');
-        if (outputLine) textChannel.send(outputLine);
+        if (outputLine) state.textChannel.send(outputLine);
     });
 
-    shell.stderr.on('data', data => {
+    state.shell.stderr.on('data', data => {
         const outputLine = data.toString('utf8');
-        if (outputLine) textChannel.send(outputLine);
+        if (outputLine) state.textChannel.send(outputLine);
     });
 
-    shell.on('error', err => {
+    state.shell.on('error', err => {
         console.log(err);
-        textChannel.send(`shell process errored out`);
+        state.textChannel.send(
+            new Discord.MessageEmbed()
+                .setColor('#ff4444')
+                .setDescription('Process encountered an error')
+        );
     });
 
-    shell.on('close', code => {
-        textChannel.send(`shell process exited with code ${code}`);
+    state.shell.on('close', code => {
+        state.active = false;
+        state.textChannel.send(
+            new Discord.MessageEmbed()
+                .setColor('#0099ff')
+                .setDescription('Process exited')
+                .addFields(
+                    { name: 'Exit Code', value: code, inline: true },
+                    {
+                        name: 'Duration',
+                        value: `${Date.now() - state.since}ms`,
+                        inline: true
+                    }
+                )
+        );
     });
-
-    return shell;
 };
 
-module.exports.shellInput = (input, shell) => {
-    if (input === '^C') {
-        shell.stdin.write('\x03');
+const shellInput = (input, state) => {
+    if (['!sigint', '!sigterm', '!sigkill'].includes(input)) {
+        if (state.active) {
+            process.kill(state.shell.pid, input.slice(1).toUpperCase());
+        } else {
+            state.textChannel.send(
+                new Discord.MessageEmbed()
+                    .setColor('#ff4444')
+                    .setDescription(
+                        'There is no active process to kill or terminate'
+                    )
+            );
+        }
     } else if (!input.startsWith('!ignore')) {
-        shell.stdin.write(`${input}\n`);
+        if (state.active) {
+            state.shell.stdin.write(`${input}\n`);
+        } else {
+            setupShell(input, state);
+        }
     }
 };
+
+module.exports = { setupShell, shellInput };

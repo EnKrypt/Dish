@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const yargs = require('yargs/yargs');
 const { hideBin } = require('yargs/helpers');
 const { validateArgs } = require('./validation');
-const { setupShell, shellInput } = require('./shell');
+const { shellInput } = require('./shell');
 
 const args = yargs(hideBin(process.argv))
     .config()
@@ -10,12 +10,15 @@ const args = yargs(hideBin(process.argv))
 validateArgs(args);
 
 const client = new Discord.Client();
-let textChannel = {};
-let shell = {};
+const state = {
+    shell: {},
+    active: false,
+    since: Date.now(),
+    textChannel: {}
+};
 
 client.on('ready', () => {
-    textChannel = client.channels.cache.get(args.textChannel);
-    shell = setupShell(textChannel);
+    state.textChannel = client.channels.cache.get(args.textChannel);
     console.log(
         'Shill is ready to execute shell commands on this host remotely.'
     );
@@ -28,7 +31,7 @@ client.on('message', message => {
         message.channel.id === args.textChannel &&
         args.authenticatedUsers.includes(message.author.id)
     ) {
-        shellInput(message.content, shell);
+        shellInput(message.content, state);
     } else if (
         // Auth with password
         message.channel.type === 'dm' &&
@@ -37,6 +40,11 @@ client.on('message', message => {
     ) {
         args.authenticatedUsers.push(message.author.id);
         message.author.send('Successfully authorized');
+        message.author.send(
+            new Discord.MessageEmbed()
+                .setColor('#0099ff')
+                .setDescription('Successfully authorized')
+        );
     }
 });
 
