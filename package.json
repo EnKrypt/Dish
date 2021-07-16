@@ -1,0 +1,16 @@
+{
+    "name": "shill",
+    "description": "Shill is a remote management discord bot for easy shell access",
+    "version": "1.0.0",
+    "private": true,
+    "author": "Arvind Kumar <arvind@enkrypt.in> (https://arvind.io)",
+    "engines": {
+        "node": ">=12"
+    },
+    "license": "MIT",
+    "repository": "github:EnKrypt/Shill",
+    "dependencies": {
+        "discord.js": "^12.5.3",
+        "yargs": "^17.0.1"
+    }
+}
