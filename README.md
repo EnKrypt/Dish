@@ -56,6 +56,8 @@ Some messages are not passed to the shell directly and have a special purpose:
 
 ## Caveats
 
+-   Applications that require a TTY (eg: editors and pagers) cannot be run properly. However, you can run REPL applications if they support an interactive mode, for eg: instead of `node`, you can run `node -i` which works well.
+-   No clean way to run and manage multiple simultaneous processes currently.
 -   Not tested against Windows and Mac, so some functionality such as termination signals may not work properly.
 -   If you've set your discord privacy such that members from mutual servers cannot DM you, you also will not be able to message the bot to authenticate.
 -   No current way to hide sensitive information from stdout of running processes.
