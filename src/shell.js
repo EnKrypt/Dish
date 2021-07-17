@@ -32,6 +32,9 @@ const setupShell = (input, state) => {
             new Discord.MessageEmbed()
                 .setColor('#0099ff')
                 .setTitle('Process exited')
+                .setThumbnail(
+                    'https://github.com/EnKrypt/Shill/raw/master/assets/Shill.png'
+                )
                 .addFields(
                     { name: 'Exit Code', value: code, inline: true },
                     {
@@ -51,6 +54,9 @@ const shellInput = (input, state) => {
                 new Discord.MessageEmbed()
                     .setColor('#0099ff')
                     .setTitle('Active process')
+                    .setThumbnail(
+                        'https://github.com/EnKrypt/Shill/raw/master/assets/Shill.png'
+                    )
                     .addFields(
                         {
                             name: 'Command',
