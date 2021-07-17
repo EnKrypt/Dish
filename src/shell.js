@@ -45,9 +45,39 @@ const setupShell = (input, state) => {
 };
 
 const shellInput = (input, state) => {
-    if (['!sigint', '!sigterm', '!sigkill'].includes(input)) {
+    if (input === '!info') {
         if (state.active) {
-            process.kill(state.shell.pid, input.slice(1).toUpperCase());
+            state.textChannel.send(
+                new Discord.MessageEmbed()
+                    .setColor('#0099ff')
+                    .setTitle('Active process')
+                    .addFields(
+                        {
+                            name: 'Command',
+                            value:
+                                state.shell.spawnargs.length === 3
+                                    ? state.shell.spawnargs[2]
+                                    : '<anonymous>',
+                            inline: true
+                        },
+                        { name: 'PID', value: state.shell.pid, inline: true },
+                        {
+                            name: 'Elapsed',
+                            value: `${Date.now() - state.since}ms`,
+                            inline: true
+                        }
+                    )
+            );
+        } else {
+            state.textChannel.send(
+                new Discord.MessageEmbed()
+                    .setColor('#0099ff')
+                    .setTitle('No active process running')
+            );
+        }
+    } else if (['!sigint', '!sigterm', '!sigkill'].includes(input)) {
+        if (state.active) {
+            state.shell.kill(input.slice(1).toUpperCase());
         } else {
             state.textChannel.send(
                 new Discord.MessageEmbed()

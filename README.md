@@ -48,6 +48,7 @@ All fields are mandatory:
 Some messages are not passed to the shell directly and have a special purpose:
 | Message | Requires an active shell process | Description |
 | --- | --- | --- |
+| `!info` | No | Indicates if there is currently an active shell process and if there is, displays information about that process. |
 | `!ignore ...` | No | Any message starting with `!ignore` will not be processed, regardless of what is running or not running on the shell. |
 | `!auth <password>` | No | Authenticate yourself to use the bot if you are not a part of `authenticatedUsers`. Only works as a direct message to the bot. |
 | `!sigint` | Yes | Sends SIGINT to the actively running shell process. This is equivalent to Ctrl C or ^C on the terminal. |
