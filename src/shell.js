@@ -2,8 +2,7 @@ const { spawn } = require('child_process');
 const Discord = require('discord.js');
 
 const setupShell = (input, state) => {
-    const [command, ...commandArguments] = input.split(' ');
-    state.shell = spawn(command, commandArguments);
+    state.shell = spawn(input, [], { shell: true });
     state.active = true;
     state.since = Date.now();
     state.shell.stdin.setEncoding('utf-8');
@@ -53,9 +52,7 @@ const shellInput = (input, state) => {
             state.textChannel.send(
                 new Discord.MessageEmbed()
                     .setColor('#ff4444')
-                    .setTitle(
-                        'There is no active process to kill or terminate'
-                    )
+                    .setTitle('There is no active process to kill or terminate')
             );
         }
     } else if (!input.startsWith('!ignore')) {
