@@ -1,14 +1,15 @@
 <p align="center">
-    <img width="500" src="https://github.com/EnKrypt/Shill/raw/master/assets/Shill.png">
+    <img width="500" src="https://github.com/EnKrypt/Dish/raw/master/assets/Dish.png">
 </p>
 
 <p align="center">
-    <b>Shill is a remote management Discord bot for easy shell access</b>
+    <b>Dish is a remote management Discord bot for easy shell access</b><br />
+    <i>Dish stands for Discord Shell</i>
 </p>
 
 <br>
 
-[![License](https://img.shields.io/github/license/EnKrypt/Shill?style=flat-square)](https://raw.githubusercontent.com/EnKrypt/Doppler/master/LICENSE)
+[![License](https://img.shields.io/github/license/EnKrypt/Dish?style=flat-square)](https://raw.githubusercontent.com/EnKrypt/Doppler/master/LICENSE)
 
 ---
 
@@ -26,10 +27,10 @@ If you haven't done that yet, [start by creating a Discord application here](htt
 
 ```json
 {
-    "token": "nxRD1Uim9asdiu.some.random.discord.generated.token.K2Dop0Mma43IqqQ",
-    "password": "user-generated-password-for-auth",
-    "textChannel": "111111111111111111",
-    "authenticatedUsers": ["222222222222222222", "333333333333333333"]
+  "token": "nxRD1Uim9asdiu.some.random.discord.generated.token.K2Dop0Mma43IqqQ",
+  "password": "user-generated-password-for-auth",
+  "textChannel": "111111111111111111",
+  "authenticatedUsers": ["222222222222222222", "333333333333333333"]
 }
 ```
 
@@ -62,13 +63,13 @@ Some messages are not passed to the shell directly and have a special purpose:
 ## Screenshots
 
 <p align="center">
-    <img width="475" src="https://github.com/EnKrypt/Shill/raw/master/assets/screenshot.png">
+    <img width="475" src="https://github.com/EnKrypt/Dish/raw/master/assets/screenshot.png">
 </p>
 
 ## Caveats
 
--   Applications that require a TTY (eg: editors and pagers) cannot be run properly. However, you can run REPL applications if they support an interactive mode, for eg: instead of `node`, you can run `node -i` which works well.
--   No clean way to run and manage multiple simultaneous processes currently.
--   Not tested against Windows and Mac, so some functionality such as termination signals may not work properly.
--   If you've set your Discord privacy such that members from mutual servers cannot DM you, you also will not be able to message the bot to authenticate.
--   No current way to hide sensitive information from stdout of running processes.
+- Applications that require a TTY (eg: editors and pagers) cannot be run properly. However, you can run REPL applications if they support an interactive mode, for eg: instead of `node`, you can run `node -i` which works well.
+- No clean way to run and manage multiple simultaneous processes currently.
+- Not tested against Windows and Mac, so some functionality such as termination signals may not work properly.
+- If you've set your Discord privacy such that members from mutual servers cannot DM you, you also will not be able to message the bot to authenticate.
+- No current way to hide sensitive information from stdout of running processes.

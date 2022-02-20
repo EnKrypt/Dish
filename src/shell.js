@@ -33,7 +33,7 @@ const setupShell = (input, state) => {
                 .setColor('#0099ff')
                 .setTitle('Process exited')
                 .setThumbnail(
-                    'https://github.com/EnKrypt/Shill/raw/master/assets/Shill.png'
+                    'https://github.com/EnKrypt/Dish/raw/master/assets/Dish.png'
                 )
                 .addFields(
                     { name: 'Exit Code', value: code, inline: true },
@@ -55,7 +55,7 @@ const shellInput = (input, state) => {
                     .setColor('#0099ff')
                     .setTitle('Active process')
                     .setThumbnail(
-                        'https://github.com/EnKrypt/Shill/raw/master/assets/Shill.png'
+                        'https://github.com/EnKrypt/Dish/raw/master/assets/Dish.png'
                     )
                     .addFields(
                         {

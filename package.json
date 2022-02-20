@@ -1,6 +1,6 @@
 {
-    "name": "shill",
-    "description": "Shill is a remote management Discord bot for easy shell access",
+    "name": "dish",
+    "description": "Dish is a remote management Discord bot for easy shell access",
     "version": "1.0.0",
     "private": true,
     "author": "Arvind Kumar <arvind@enkrypt.in> (https://arvind.io)",
@@ -8,7 +8,7 @@
         "node": ">=12"
     },
     "license": "MIT",
-    "repository": "github:EnKrypt/Shill",
+    "repository": "github:EnKrypt/Dish",
     "dependencies": {
         "discord.js": "^12.5.3",
         "yargs": "^17.0.1"

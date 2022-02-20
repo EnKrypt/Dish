@@ -20,7 +20,7 @@ const state = {
 client.on('ready', () => {
     state.textChannel = client.channels.cache.get(args.textChannel);
     console.log(
-        'Shill is ready to execute shell commands on this host remotely.'
+        'Dish is ready to execute shell commands on this host remotely.'
     );
 });
 
