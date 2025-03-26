@@ -1,7 +1,7 @@
 {
     "name": "dish",
     "description": "Dish is a remote management Discord bot for easy shell access",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "private": true,
     "author": "Arvind Kumar <arvind@enkrypt.in> (https://arvind.io)",
     "engines": {
@@ -10,6 +10,7 @@
     "license": "MIT",
     "repository": "github:EnKrypt/Dish",
     "dependencies": {
+        "axios": "^1.8.4",
         "discord.js": "^12.5.3",
         "yargs": "^17.0.1"
     }

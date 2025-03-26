@@ -30,7 +30,8 @@ If you haven't done that yet, [start by creating a Discord application here](htt
   "token": "nxRD1Uim9asdiu.some.random.discord.generated.token.K2Dop0Mma43IqqQ",
   "password": "user-generated-password-for-auth",
   "textChannel": "111111111111111111",
-  "authenticatedUsers": ["222222222222222222", "333333333333333333"]
+  "authenticatedUsers": ["222222222222222222", "333333333333333333"],
+  "uptimeUrl": "https://uptime.example.com/api/push/MonitorId?status=up&msg=OK"
 }
 ```
 
@@ -41,6 +42,7 @@ All fields are mandatory:
 | `password` | `string` | The password that will authenticate a Discord user to run shell commands. This password is decided by you. |
 | `textChannel` | `string` | The Discord text channel ID that this bot will use for communication. |
 | `authenticatedUsers` | `Array<string>` | A list of Discord user IDs that can run shell commands without authenticating via a password. Useful for owners and admins so they don't get locked out. This list can be empty. |
+| `uptimeUrl` | `string` | A URL to which a GET request will be made every 60 seconds. Primarily used to monitor uptime of this service via a 'push' strategy. This behavior can be turned off by providing an empty string. |
 
 4. From the root folder of the repository, run `node src --config /path/to/config.json`
 
