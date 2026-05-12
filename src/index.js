@@ -29,7 +29,8 @@ client.on('ready', () => {
           `Error while making a call to 'uptimeUrl': ${error.message}`
         );
       }
-    }, 1000 * 60);
+    // The requirement is to make a heartbeat network call every 60 seconds, but we'll specify 50 to compensate for delays due to other potential overheads.
+    }, 1000 * 50);
   }
 });
 
